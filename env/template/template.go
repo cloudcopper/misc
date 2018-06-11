@@ -21,28 +21,30 @@ type Template struct {
 	Data     Data
 }
 
-// Exec is a simplest one-liner to create, execute and get out the result of template.
-func Exec(s string) string {
+// MustExec is a simplest one-liner to create, execute and get out the result of template.
+// It panic in case of any error.
+func MustExec(s string) string {
 	t, err := Parse(s)
 	if err != nil {
-		return s
+		panic(err)
 	}
 	r, err := t.Execute()
 	if err != nil {
-		return s
+		panic(err)
 	}
 
 	return r
 }
 
-// ExecFile is a simplest one-liner to create from file, execute and get out the result of template.
-func ExecFile(filename string) string {
+// MustExecFile is a simplest one-liner to create from file, execute and get out the result of template.
+// It panic in case of any error.
+func MustExecFile(filename string) string {
 	s, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return ""
+		panic(err)
 	}
 
-	return Exec(string(s))
+	return MustExec(string(s))
 }
 
 // Execute applies to parsed template the captured environment.

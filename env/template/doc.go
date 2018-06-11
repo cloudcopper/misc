@@ -8,7 +8,7 @@
 //    {{ call .SHELL "ifconfig|grep 'inet addr'"}}
 //    Now is {{ call .SHELL "date" }}
 //
-// For simplest usage see functions Exec and ExecFile.
+// For simplest usage see functions MustExec and MustExecFile.
 //
 // Basic usage:
 //
